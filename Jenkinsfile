@@ -10,7 +10,7 @@ pipeline {
     stage("Test") {
       agent {
           docker {
-            image 'python:3.8-slim-buster'
+            image 'python:3.8.1'
             args '-u 0:0 -v /tmp:/root/.cache'
           }
       }
