@@ -42,7 +42,10 @@ pipeline {
     }
 
     stage("deploy"){
-      sh "./deploy.sh"
+        steps {
+            sh "./deploy.sh"
+        }
+
     }
   }
 
