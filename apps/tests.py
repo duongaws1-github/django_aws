@@ -8,4 +8,4 @@ class S3TestCase(TestCase):
         self.assertEqual(1 + 1, 2)
 
     def test_anything(self):
-        self.assertEqual(0 + 0, 0)
+        self.assertEqual(0 + 1, 1)
