@@ -44,8 +44,10 @@ pipeline {
     stage("deploy"){
       agent { node {label 'master'}}
       steps {
-        sh "chmod 777 ./deploy.sh"
-        sh "./deploy.sh"
+        sh "docker-compose stop"
+        sh "docker-compose rm -f"
+        sh "docker-compose pull"
+        sh "docker-compose up -d --build"
       }
 
     }
