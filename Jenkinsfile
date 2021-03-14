@@ -42,7 +42,7 @@ pipeline {
     }
 
     stage("deploy"){
-      agent none
+      agent { node {label 'master'}}
       steps {
         sh "./deploy.sh"
       }
