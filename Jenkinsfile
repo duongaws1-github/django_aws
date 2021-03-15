@@ -36,8 +36,17 @@ pipeline {
         }
 
         //clean to save disk
-        //sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+        sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
         sh "docker image rm ${DOCKER_IMAGE}:latest"
+      }
+    }
+
+    stage("deploy"){
+      steps {
+      echo "hi, I will push deploy stage"
+        // if folder code not exist -> mkdir
+        // clone code
+        // run ./deploy.sh
       }
     }
   }
