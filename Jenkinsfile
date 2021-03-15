@@ -36,20 +36,9 @@ pipeline {
         }
 
         //clean to save disk
-        sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+        //sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
         sh "docker image rm ${DOCKER_IMAGE}:latest"
       }
-    }
-
-    stage("deploy"){
-      agent { node {label 'master'}}
-      steps {
-        sh "docker-compose stop"
-        sh "docker-compose rm -f"
-        sh "docker-compose pull"
-        sh "docker-compose up -d --build"
-      }
-
     }
   }
 
