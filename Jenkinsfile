@@ -42,6 +42,7 @@ pipeline {
     }
 
     stage("deploy"){
+      agent none
       environment {
         FOLDER_GIT= 'django_aws/manage.py'
       }
@@ -49,6 +50,12 @@ pipeline {
         // ssh ec2 instance
         withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_deploy_server', keyFileVariable: 'KEY_FILE')]) {
             sh "ssh -i ${KEY_FILE} ubuntu@3.138.142.246"
+            echo "-----------------------ls-----------------------"
+            echo "-----------------------ls-----------------------"
+            echo "-----------------------ls-----------------------"
+            echo "-----------------------ls-----------------------"
+            echo "-----------------------ls-----------------------"
+            echo "-----------------------ls-----------------------"
             sh "ls"
             // check file manage.py exists
 //             if(!fileExists('/manage.py')) {
