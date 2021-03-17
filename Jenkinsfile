@@ -49,7 +49,7 @@ pipeline {
       steps {
         // ssh ec2 instance
         withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_deploy_server', keyFileVariable: 'KEY_FILE')]) {
-            sh "ssh -i ${KEY_FILE} ubuntu@3.138.142.246"
+            sh "ssh -tt -i ${KEY_FILE} ubuntu@3.138.142.246"
             echo "-----------------------ls-----------------------"
             echo "-----------------------ls-----------------------"
             echo "-----------------------ls-----------------------"
