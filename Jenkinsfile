@@ -49,8 +49,7 @@ pipeline {
       steps {
         // ssh ec2 instance
         withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key_deploy_server', keyFileVariable: 'KEY_FILE')]) {
-            sh "ssh-keygen -R hostname"
-            sh "ssh -tt -i ${KEY_FILE} ubuntu@3.138.142.246"
+            sh "ssh-keygen -R hostname -tt -i ${KEY_FILE} ubuntu@3.138.142.246"
             echo "-----------------------ls-----------------------"
             echo "-----------------------ls-----------------------"
             echo "-----------------------ls-----------------------"
