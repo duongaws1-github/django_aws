@@ -47,8 +47,8 @@ pipeline {
       }
       steps {
         // ssh ec2 instance
-        withCredentials([string(credentialsId: '18e5c714-f5a1-410c-9708-42b365842838', variable: 'SSH_PASSPHRASE')]) {
-            sh "ssh -i $SSH_PASSPHRASE ubuntu@3.138.142.246"
+        withCredentials([string(credentialsId: 'ssh_key_deploy_server', keyFileVariable: 'KEY_FILE')]) {
+            sh "ssh -i ${KEY_FILE} ubuntu@3.138.142.246"
             sh "ls"
             // check file manage.py exists
 //             if(!fileExists('/manage.py')) {
