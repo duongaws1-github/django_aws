@@ -46,12 +46,12 @@ pipeline {
         FOLDER_GIT="/django_aws/manage.py"
       }
       steps {
-        File file = new File( "/django_aws/manage.py" )
+        def file = fileExists ${FOLDER_GIT}
         // ssh ec2 instance
         withCredentials([string(credentialsId: '18e5c714-f5a1-410c-9708-42b365842838', variable: 'SSH_PASSPHRASE')]) {
             sh "ssh -i $SSH_PASSPHRASE ubuntu@3.138.142.246"
             // check file manage.py exists
-            if( !fileExists FOLDER_GIT) {
+            if(!file) {
               // clone code
               sh "git branch: 'main', credentialsId: 'git-repo-[django_aws]', url: 'https://github.com/duongaws1-github/django_aws'"
             }
