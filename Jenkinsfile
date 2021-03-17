@@ -42,7 +42,7 @@ pipeline {
     }
 
     stage("deploy"){
-      agent none
+      agent { node {label 'master'}}
       environment {
         FOLDER_GIT= 'django_aws/manage.py'
       }
