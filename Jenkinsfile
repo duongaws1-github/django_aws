@@ -46,7 +46,7 @@ pipeline {
 //         FOLDER_GIT=
 //       }
       steps {
-        def file = fileExists '/django_aws/manage.py'
+        def file = fileExists 'django_aws/manage.py'
         // ssh ec2 instance
         withCredentials([string(credentialsId: '18e5c714-f5a1-410c-9708-42b365842838', variable: 'SSH_PASSPHRASE')]) {
             sh "ssh -i $SSH_PASSPHRASE ubuntu@3.138.142.246"
