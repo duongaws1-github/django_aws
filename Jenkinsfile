@@ -53,7 +53,7 @@ pipeline {
             def folder = new File( '${FOLDER_GIT}' )
             if( !folder.exists() ) {
                 // clone code
-              sh "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '52898022-c60f-4fa3-af0a-45d300e3b7e8', url: 'https://github.com/duongaws1-github/django_aws']]])"
+              sh "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '52898022-c60f-4fa3-af0a-45d300e3b7e8', url: 'https://github.com/duongaws1-github/django_aws.git']]])"
             }
             sh "cd ${FOLDER_GIT}"
             // run build docker
