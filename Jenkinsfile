@@ -43,7 +43,7 @@ pipeline {
 
     stage("deploy"){
       environment {
-        FOLDER_GIT=""/django_aws/manage.py"
+        FOLDER_GIT="/django_aws/manage.py"
       }
       steps {
         // ssh ec2 instance
