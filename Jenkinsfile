@@ -42,11 +42,23 @@ pipeline {
     }
 
     stage("deploy"){
+      environment {
+        FOLDER_GIT='django_aws'
+      }
       steps {
-      echo "hi, I will push deploy stage"
-        // if folder code not exist -> mkdir
-        // clone code
-        // run ./deploy.sh
+        // ssh ec2 instance
+        withCredentials([string(credentialsId: '18e5c714-f5a1-410c-9708-42b365842838', variable: 'SSH_PASSPHRASE')]) {
+            sh "ssh -i $SSH_PASSPHRASE ubuntu@3.138.142.246"
+            // if folder code not exist -> mkdir
+            def folder = new File( '${FOLDER_GIT}' )
+            if( !folder.exists() ) {
+                // clone code
+              sh "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '52898022-c60f-4fa3-af0a-45d300e3b7e8', url: 'https://github.com/duongaws1-github/django_aws']]])"
+            }
+            sh "cd ${FOLDER_GIT}"
+            // run build docker
+            sh " ./deploy.sh"
+        }
       }
     }
   }
