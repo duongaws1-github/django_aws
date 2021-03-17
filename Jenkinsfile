@@ -50,7 +50,7 @@ pipeline {
         withCredentials([string(credentialsId: '18e5c714-f5a1-410c-9708-42b365842838', variable: 'SSH_PASSPHRASE')]) {
             sh "ssh -i $SSH_PASSPHRASE ubuntu@3.138.142.246"
             // if folder code not exist -> mkdir
-            def folder = new File( '${FOLDER_GIT}' )
+            def folder = new File( ${FOLDER_GIT} )
             if( !folder.exists() ) {
                 // clone code
               sh "git branch: 'main', credentialsId: 'git-repo-[django_aws]', url: 'https://github.com/duongaws1-github/django_aws'"
